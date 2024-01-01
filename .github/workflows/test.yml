@@ -2,9 +2,16 @@ name: Test
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - updated
+      - devel
+      
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - updated
+      - devel
 
 jobs:
   unit:
