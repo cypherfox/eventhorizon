@@ -5,13 +5,13 @@ on:
     branches:
       - main
       - updated
-      - devel
+      - dev
       
   pull_request:
     branches:
       - main
       - updated
-      - devel
+      - dev
 
 jobs:
   unit:
