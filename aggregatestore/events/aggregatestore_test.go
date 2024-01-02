@@ -353,6 +353,9 @@ func NewTestAggregateOther(id uuid.UUID) *TestAggregateOther {
 func (a *TestAggregateOther) HandleCommand(ctx context.Context, cmd eh.Command) error {
 	return nil
 }
+func (a *TestAggregateOther) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, nil
+}
 
 func (a *TestAggregateOther) ApplyEvent(ctx context.Context, event eh.Event) error {
 	if a.err != nil {

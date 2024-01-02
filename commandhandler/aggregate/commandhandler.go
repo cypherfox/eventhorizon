@@ -78,3 +78,8 @@ func (h *CommandHandler) HandleCommand(ctx context.Context, cmd eh.Command) erro
 
 	return h.store.Save(ctx, a)
 }
+
+// HandleCommandWithReply implements the HandleCommandWithReply method of the Aggregate interface.
+func (h *CommandHandler) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, h.HandleCommand(ctx, cmd)
+}

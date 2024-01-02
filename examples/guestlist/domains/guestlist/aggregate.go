@@ -133,6 +133,11 @@ func (a *InvitationAggregate) HandleCommand(ctx context.Context, cmd eh.Command)
 	return fmt.Errorf("couldn't handle command")
 }
 
+// HandleCommandWithReply implements the HandleCommandWithReply method of the Aggregate interface.
+func (a *InvitationAggregate) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, a.HandleCommand(ctx, cmd)
+}
+
 // ApplyEvent implements the ApplyEvent method of the Aggregate interface.
 func (a *InvitationAggregate) ApplyEvent(ctx context.Context, event eh.Event) error {
 	switch event.EventType() {

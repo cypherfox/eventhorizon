@@ -21,6 +21,7 @@ import (
 // CommandHandler is an interface that all handlers of commands should implement.
 type CommandHandler interface {
 	HandleCommand(context.Context, Command) error
+	HandleCommandWithReply(context.Context, Command) (interface{}, error)
 }
 
 // CommandHandlerFunc is a function that can be used as a command handler.
@@ -29,4 +30,10 @@ type CommandHandlerFunc func(context.Context, Command) error
 // HandleCommand implements the HandleCommand method of the CommandHandler.
 func (h CommandHandlerFunc) HandleCommand(ctx context.Context, cmd Command) error {
 	return h(ctx, cmd)
+}
+
+// HandleCommandWithReply implements the HandleCommandWithReply method of the CommandHandler
+// for the CommandHandlerFunc, returning nil as the reply.
+func (h CommandHandlerFunc) HandleCommandWithReply(ctx context.Context, cmd Command) (interface{}, error) {
+	return nil, h(ctx, cmd)
 }

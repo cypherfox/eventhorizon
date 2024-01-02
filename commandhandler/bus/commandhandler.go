@@ -65,6 +65,12 @@ func (h *CommandHandler) HandleCommand(ctx context.Context, cmd eh.Command) erro
 	return ErrHandlerNotFound
 }
 
+// HandleCommandWithReply implements the HandleCommandWithReply method of the
+// eventhorizon.CommandHandler interface.
+func (h *CommandHandler) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, h.HandleCommand(ctx, cmd)
+}
+
 // SetHandler adds a handler for a specific command.
 func (h *CommandHandler) SetHandler(handler eh.CommandHandler, cmdType eh.CommandType) error {
 	h.handlersMu.Lock()
