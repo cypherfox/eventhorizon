@@ -8,7 +8,7 @@ require (
 	github.com/google/uuid v1.4.0
 	github.com/gorhill/cronexpr v0.0.0-20180427100037-88b0669f7d75
 	github.com/gorilla/websocket v1.4.2
-	github.com/jinzhu/copier v0.3.4
+	github.com/jinzhu/copier v0.4.0
 	github.com/jpillora/backoff v1.0.0
 	github.com/kr/pretty v0.3.0
 	github.com/nats-io/nats.go v1.31.0
