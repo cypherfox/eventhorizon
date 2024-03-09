@@ -188,6 +188,9 @@ func NewTestAggregate(id uuid.UUID) *TestAggregate {
 func (a *TestAggregate) HandleCommand(ctx context.Context, cmd eh.Command) error {
 	return nil
 }
+func (a *TestAggregate) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, nil
+}
 
 func (a *TestAggregate) ApplyEvent(ctx context.Context, event eh.Event) error {
 	a.event = event

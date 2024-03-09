@@ -95,6 +95,18 @@ func (a *Aggregate) HandleCommand(ctx context.Context, cmd eh.Command) error {
 	return nil
 }
 
+// HandleCommandWithReply implements the HandleCommandWithReply method of the eventhorizon.Aggregate interface.
+func (a *Aggregate) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	if a.Err != nil {
+		return nil, a.Err
+	}
+
+	a.Commands = append(a.Commands, cmd)
+	a.Context = ctx
+
+	return nil, nil
+}
+
 func (a *Aggregate) CreateSnapshot() *eh.Snapshot {
 	return &eh.Snapshot{
 		Timestamp: time.Now(),
@@ -208,6 +220,21 @@ func (h *CommandHandler) HandleCommand(ctx context.Context, cmd eh.Command) erro
 	h.Context = ctx
 
 	return nil
+}
+
+// HandleCommandWithReply implements the HandleCommandWithReply method of the eventhorizon.CommandHandler interface.
+func (h *CommandHandler) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	h.Lock()
+	defer h.Unlock()
+
+	if h.Err != nil {
+		return nil, h.Err
+	}
+
+	h.Commands = append(h.Commands, cmd)
+	h.Context = ctx
+
+	return nil, nil
 }
 
 // EventHandler is a mocked eventhorizon.EventHandler, useful in testing.

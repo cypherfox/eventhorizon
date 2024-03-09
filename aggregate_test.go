@@ -102,6 +102,9 @@ func (a *TestAggregateRegister) AggregateType() AggregateType {
 func (a *TestAggregateRegister) HandleCommand(ctx context.Context, cmd Command) error {
 	return nil
 }
+func (a *TestAggregateRegister) HandleCommandWithReply(ctx context.Context, cmd Command) (interface{}, error) {
+	return nil, nil
+}
 
 type TestAggregateRegisterEmpty struct {
 	id uuid.UUID
@@ -117,6 +120,9 @@ func (a *TestAggregateRegisterEmpty) AggregateType() AggregateType {
 func (a *TestAggregateRegisterEmpty) HandleCommand(ctx context.Context, cmd Command) error {
 	return nil
 }
+func (a *TestAggregateRegisterEmpty) HandleCommandWithReply(ctx context.Context, cmd Command) (interface{}, error) {
+	return nil, nil
+}
 
 type TestAggregateRegisterTwice struct {
 	id uuid.UUID
@@ -131,4 +137,7 @@ func (a *TestAggregateRegisterTwice) AggregateType() AggregateType {
 }
 func (a *TestAggregateRegisterTwice) HandleCommand(ctx context.Context, cmd Command) error {
 	return nil
+}
+func (a *TestAggregateRegisterTwice) HandleCommandWithReply(ctx context.Context, cmd Command) (interface{}, error) {
+	return nil, nil
 }

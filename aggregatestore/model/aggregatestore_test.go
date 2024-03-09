@@ -267,6 +267,16 @@ func (a *Aggregate) HandleCommand(ctx context.Context, cmd eh.Command) error {
 
 	return nil
 }
+func (a *Aggregate) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	if a.Err != nil {
+		return nil, a.Err
+	}
+
+	a.Commands = append(a.Commands, cmd)
+	a.Context = ctx
+
+	return nil, nil
+}
 
 // AggregateOther is a mocked eventhorizon.Aggregate, useful in testing.
 type AggregateOther struct {

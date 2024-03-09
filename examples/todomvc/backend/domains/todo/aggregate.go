@@ -150,6 +150,12 @@ func (a *Aggregate) HandleCommand(ctx context.Context, cmd eh.Command) error {
 	return nil
 }
 
+// HandleCommandWithReply implements the HandleCommandWithReply method of the
+// eventhorizon.CommandHandler interface.
+func (a *Aggregate) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, a.HandleCommand(ctx, cmd)
+}
+
 // ApplyEvent implements the ApplyEvent method of the
 // eventhorizon.Aggregate interface.
 func (a *Aggregate) ApplyEvent(ctx context.Context, event eh.Event) error {

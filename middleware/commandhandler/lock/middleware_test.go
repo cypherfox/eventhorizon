@@ -66,3 +66,9 @@ func (h *LongCommandHandler) HandleCommand(ctx context.Context, cmd eh.Command) 
 
 	return nil
 }
+
+// HandleCommandWithReply implements the HandleCommandWithReply method of the
+// eventhorizon.CommandHandler interface.
+func (h *LongCommandHandler) HandleCommandWithReply(ctx context.Context, cmd eh.Command) (interface{}, error) {
+	return nil, h.HandleCommand(ctx, cmd)
+}
